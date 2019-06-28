@@ -16,6 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from mainapp.views import YayinlarMainMakaleList, YayinlarOthersMakaleList, getSingleMakale, addContact, getSingleUzmanlik, UzmanlikList
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('getmakalefilterable/', YayinlarMainMakaleList.as_view(), name="getmakalefilterable"),
+    path('getmakaleothers/', YayinlarOthersMakaleList.as_view(), name="getmakaleothers"),
+    path('makale/<int:pk>/', getSingleMakale.as_view(), name="getsinglemakale"),
+
+    path('uzmanliklar/', UzmanlikList.as_view(), name="uzmanliklist"),
+    path('uzmanlik/<int:pk>', getSingleUzmanlik.as_view(), name="getsingleuzmanlik"),
+
+    path('addContact', addContact.as_view(), name="addcontact")
 ]

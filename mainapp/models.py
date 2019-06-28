@@ -56,13 +56,40 @@ class Makaleler(models.Model):
         verbose_name = "Makale"
         verbose_name_plural = "Makaleler"
 
-    class Uzmanliklar(models.Model):
-        uzmanlik_baslik = models.CharField(('Uzmanlık Alanı Başlığı'), max_length=100)
-        uzmanlik_mesaj = RichTextField()
-        uzmanlik_slug = models.SlugField(unique=True)
+class Uzmanliklar(models.Model):
 
-        uzmanlik_unique_name = models.CharField(('Uzmanlık Tekil Adı'))
+    KATEGORILER = (
+        ('ticarethukuku', 'Ticaret Hukuku'),
+        ('tazminathukuku', 'Tazminat Hukuku'),
+        ('sozlesmelerhukuku', 'Sözleşmeler Hukuku'),
+        ('mirashukuku', 'Miras Hukuku'),
+        ('ishukuku', 'İş Hukuku'),
+        ('icraiflashukuku', 'İcra-İflas Hukuku'),
+        ('gayrimenkulhukuku', 'Gayrimenkul Hukuku'),
+        ('cezahukuku', 'Ceza Hukuku'),
+        ('ailehukuku', 'Aile Hukuku'),
+    )
 
-        def save(self, *args, **kwargs):
-            self.makale_slug = slugify(unidecode(self.uzmanlik_baslik))
-            super(Uzmanliklar, self).save(*args, **kwargs)
+    uzmanlik_baslik = models.CharField(('Uzmanlık Başlığı'), choices= KATEGORILER, max_length= 100)
+    uzmanlik_mesaj = RichTextField()
+
+    def __str__(self):
+        return self.get_uzmanlik_baslik_display();
+
+    class Meta:
+        verbose_name= "Hukuki Uzmanlık"
+        verbose_name_plural= "Hukuki Uzmanlıklar"
+
+class ContactModel(models.Model):
+    contact_isim = models.CharField(('Ad-Soyad'), max_length= 100)
+    contact_ulasim = models.CharField(('Ulaşım Bilgisi'), max_length= 150)
+    contact_message = models.TextField(('İletişim Mesajı'))
+    contact_tarih = models.DateField(auto_now_add= True)
+
+    def __str__(self):
+        return self.contact_isim
+
+    class Meta:
+        ordering= ('-contact_tarih',)
+        verbose_name= "İletişim Talebi"
+        verbose_name_plural= "İletişim Talepleri"

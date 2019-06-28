@@ -40,10 +40,13 @@ INSTALLED_APPS = [
 
     'ckeditor',
     'rest_framework',
-    'mainapp'
+    'mainapp',
+    'corsheaders'
 ]
 
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,6 +55,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL= True
 
 ROOT_URLCONF = 'alfaAvukatlikBackend.urls'
 
@@ -107,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'tr-tr'
 
 TIME_ZONE = 'UTC'
 
@@ -122,3 +127,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# REST FRAMEWORK
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+    'rest_framework.renderers.JSONRenderer',
+    )
+}
