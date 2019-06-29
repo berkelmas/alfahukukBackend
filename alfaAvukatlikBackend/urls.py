@@ -28,5 +28,5 @@ urlpatterns = [
     path('uzmanliklar/', UzmanlikList.as_view(), name="uzmanliklist"),
     path('uzmanlik/<int:pk>', getSingleUzmanlik.as_view(), name="getsingleuzmanlik"),
 
-    path('addContact', addContact.as_view(), name="addcontact")
+    path('addcontact/', addContact.as_view(), name="addcontact")
 ]

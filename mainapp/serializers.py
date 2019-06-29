@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from .models import ContactModel
 
 class MakaleSerializer(serializers.Serializer):
     id= serializers.CharField()
