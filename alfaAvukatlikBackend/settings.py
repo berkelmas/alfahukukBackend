@@ -25,7 +25,7 @@ SECRET_KEY = '83d#*u*vj-i@#nhn4db7t-ad$hunrg+2(qlmh2vj2nu9-d8bdd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['142.93.170.96', 'api.alitarak.com']
 
 
 # Application definition
@@ -84,8 +84,12 @@ WSGI_APPLICATION = 'alfaAvukatlikBackend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'alfaukukdatabase',
+        'USER': 'alfahukukdatabaseuser',
+        'PASSWORD': 'berk693693',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
